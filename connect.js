@@ -23,11 +23,11 @@ function makeBoard() {
 }
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
-
+// TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
 function makeHtmlBoard() {
-  // TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
+  const htmlBoard = document.getElementById('board');
 
-  // TODO: add comment for this code
+  // Make column tops (clickable area for adding a piece to that column)
   const top = document.createElement('tr');
   top.setAttribute('id', 'column-top');
   top.addEventListener('click', handleClick);
