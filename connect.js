@@ -23,8 +23,9 @@ function setGame() {
       tile.classList.add('tile');
       tile.id = `${r.toString()}-${c.toString()}`;
       // tile.addEventListener('click', handleClick);
-      document.getElementById('board').appendChild(tile);
+      document.getElementById('board').append(tile);
     }
+    board.push(row);
   }
 }
 
