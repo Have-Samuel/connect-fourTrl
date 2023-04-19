@@ -2,18 +2,50 @@
 
 const playerRed = 'R';
 const playerYellow = 'Y';
-const currPlayer = playerRed; // active player: 1 or 2
+let currPlayer = playerRed; // active player: 1 or 2
 
 const gameOver = false;
 let board; // array of rows, each row is array of cells  (board[y][x])
+let currColumns;
 
 const rows = 6;
 const cols = 7;
+
+// The click Handler Function
+function handleClick() {
+  if (gameOver) {
+    return;
+  }
+
+  const coords = this.id.split('-'); // '0-0' -> ['0'-'0']
+  // We have to parse them as int
+  let r = parseInt(coords[0]);
+  const c = parseInt(coords[1]);
+
+  // Update r
+  r = currColumns[c];
+  if (r < 0) {
+    return;
+  }
+
+  // Update board in JS
+  board[r][c] = currPlayer;
+  // Same for HTML
+  const tile = this;
+  if (currPlayer === playerRed) {
+    tile.classList.add('red-piece');
+    currPlayer = playerYellow;
+  } else {
+    tile.classList.add('yellow-piece');
+    currPlayer = playerRed;
+  }
+}
 
 // Set up the tiles within the board
 function setGame() {
   // create a new board
   board = [];
+  currColumns = [5, 5, 5, 5, 5, 5, 5];
 
   for (let r = 0; r < rows; r += 1) {
     // create a new row
@@ -25,7 +57,7 @@ function setGame() {
       const tile = document.createElement('div');
       tile.classList.add('tile');
       tile.id = `${r.toString()}-${c.toString()}`;
-      // tile.addEventListener('click', handleClick);
+      tile.addEventListener('click', handleClick);
       document.getElementById('board').append(tile);
     }
     board.push(row);
