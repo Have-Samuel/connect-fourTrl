@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-use-before-define */
 /** Connect Four
  *
  * Player 1 and 2 alternate turns. On each turn, a piece is dropped down a
@@ -8,7 +10,7 @@
 const WIDTH = 7;
 const HEIGHT = 6;
 
-const currPlayer = 1; // active player: 1 or 2
+let currPlayer = 1; // active player: 1 or 2
 const board = []; // array of rows, each row is array of cells  (board[y][x])
 
 /** makeBoard: create in-JS board structure:
@@ -22,35 +24,35 @@ function makeBoard() {
   }
 }
 
-// // handleClick: handle click of column top to place piece
-// function handleClick(e) {
-//   // get x from ID of clicked cell
-//   const x = +e.target.id;
-//   // get next spot in column (if non, ignore click)
-//   const y = findSpotForCol(x);
-//   if (y === null) return;
+// handleClick: handle click of column top to place piece
+function handleClick(e) {
+  // get x from ID of clicked cell
+  const x = +e.target.id;
+  // get next spot in column (if non, ignore click)
+  const y = findSpotForCol(x);
+  if (y === null) return;
 
-//   // place piece in board and add to HTML table
-//   board[y][x] = currPlayer;
-//   placeInTable(y, x);
+  // place piece in board and add to HTML table
+  board[y][x] = currPlayer;
+  placeInTable(y, x);
 
-//   // check for win
-//   if (checkForWin()) {
-//     return endGame(`Player ${currPlayer} won!`);
-//   }
+  // check for win
+  if (checkForWin()) {
+    return endGame(`Player ${currPlayer} won!`);
+  }
 
-//   // check for Tie
-//   if (board.every(row => row.every(cell => cell))) {
-//     return endGame('Tie!')
-//   }
+  // check for Tie
+  if (board.every((row) => row.every((cell) => cell))) {
+    return endGame('Tie!');
+  }
 
-//   // swtich players
-//   // if (currPlayer === 1) {
-//   //   currPlayer = 2;
-//   // }
-//   // Tenary Operator
-//   currPlayer = currPlayer === 1 ? 2 : 1;
-// }
+  // swtich players
+  // if (currPlayer === 1) {
+  //   currPlayer = 2;
+  // }
+  // Tenary Operator
+  currPlayer = currPlayer === 1 ? 2 : 1;
+}
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
 // TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
@@ -111,9 +113,6 @@ function endGame(msg) {
   alert(msg, 'Game Over!');
 }
 
-/** handleClick: handle click of column top to play piece */
-
-// handleClick: handle click of column top to place piece
 // function handleClick(e) {
 //   // get x from ID of clicked cell
 //   const x = +e.target.id;
@@ -143,27 +142,27 @@ function endGame(msg) {
 //   currPlayer = currPlayer === 1 ? 2 : 1;
 // }
 
-function handleClick(evt) {
-  // get x from ID of clicked cell
-  const x = +evt.target.id;
+// function handleClick(evt) {
+//   // get x from ID of clicked cell
+//   const x = +evt.target.id;
 
-  // get next spot in column (if none, ignore click)
-  const y = findSpotForCol(x);
-  if (y === null) {
-    return;
-  }
+//   // get next spot in column (if none, ignore click)
+//   const y = findSpotForCol(x);
+//   if (y === null) {
+//     return;
+//   }
 
-  // check for win
-  if (checkForWin()) {
-    return endGame(`Player ${currPlayer} won!`);
-  }
+//   // check for win
+//   if (checkForWin()) {
+//     return endGame(`Player ${currPlayer} won!`);
+//   }
 
-  // check for tie
-  // TODO: check if all cells in board are filled; if so call, call endGame
+//   // check for tie
+//   // TODO: check if all cells in board are filled; if so call, call endGame
 
-  // switch players
-  // TODO: switch currPlayer 1 <-> 2
-}
+//   // switch players
+//   // TODO: switch currPlayer 1 <-> 2
+// }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
 
