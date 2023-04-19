@@ -31,9 +31,7 @@ body {
 }
 
 #winner {
-  font-size: 2em;
-  font-weight: bold;
-  color: gold;
+  color: #f80;
 }
 
 .tile {
