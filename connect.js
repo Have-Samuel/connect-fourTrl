@@ -39,6 +39,19 @@ function checkWinner() {
       }
     }
   }
+  // Vertically
+  for (let c = 0; c < cols; c += 1) {
+    for (let r = 0; r < rows - 3; r += 1) {
+      if (board[r][c] !== ' ') {
+        if (board[r][c] === board[r + 1][c]
+          && board[r + 1][c] === board[r + 2][c]
+          && board[r + 2][c] === board[r + 3][c]) {
+          setWinner(r, c);
+          return;
+        }
+      }
+    }
+  }
 }
 
 // The click Handler Function
