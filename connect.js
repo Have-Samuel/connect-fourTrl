@@ -4,7 +4,7 @@ const playerRed = 'R';
 const playerYellow = 'Y';
 let currPlayer = playerRed; // active player: 1 or 2
 
-const gameOver = false;
+let gameOver = false;
 let board; // array of rows, each row is array of cells  (board[y][x])
 let currColumns;
 
@@ -15,11 +15,11 @@ const cols = 7;
 function setWinner(r, c) {
   const winner = document.getElementById('winner');
   if (board[r][c] === playerRed) {
-    winner.ininerText = 'Red Wins!';
+    winner.innerText = 'Red Wins!';
   } else {
     winner.innerText = 'Yellow Wins!';
   }
-  // eslint-disable-next-line no-const-assign
+
   gameOver = true;
 }
 
