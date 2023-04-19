@@ -52,6 +52,7 @@ function makeHtmlBoard() {
   // Make the main part of the Board
   for (let y = 0; y < HEIGHT; y += 1) {
     const row = document.createElement('tr');
+
     for (let x = 0; x < WIDTH; x += 1) {
       const cell = document.createElement('td');
       cell.setAttribute('id', `${y}-${x}`);
@@ -64,15 +65,24 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // TODO: write the real version of this, rather than always returning 0
-  return 0;
+  for (let y = HEIGHT - 1; y >= 0; y--) {
+    if (!board[y][x]) {
+      return y;
+    }
+  }
+  return null;
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
 
-function placeInTable(y, x) {
-  // TODO: make a div and insert into correct table cell
-}
+// function placeInTable(y, x) {
+//     const piece = document.createElement('div');
+//     piece.classList.add('piece');
+//     piece.classList.add(`p${currPlayer}`);
+//     piece.style.top = -50 * (y + 2);
+
+
+// }
 
 /** endGame: announce game end */
 
