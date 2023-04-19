@@ -1,5 +1,13 @@
 /* game board table */
 
+#board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 4rem auto;
+}
+
 #board td {
   width: 50px;
   height: 50px;
@@ -25,4 +33,5 @@
 
 #column-top td:hover {
   background-color: gold;
+  cursor: pointer;
 }
