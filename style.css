@@ -30,6 +30,12 @@ body {
   cursor: pointer;
 }
 
+#winner {
+  font-size: 2em;
+  font-weight: bold;
+  color: gold;
+}
+
 .tile {
   height: 70px;
   width: 70px;
