@@ -66,12 +66,12 @@ function checkWinner() {
     }
   }
   // Diagonally
-  for (let c = 0; c < cols - 3; c += 1) {
-    for (let r = 0; r < rows - 3; r += 1) {
+  for (let r = 3; r < rows; r += 1) {
+    for (let c = 0; c < cols - 3; c += 1) {
       if (board[r][c] !== ' ') {
-        if (board[r][c] === board[r - 1][c - 1]
-          && board[r - 1][c - 1] === board[r - 2][c - 2]
-          && board[r - 2][r - 3] === board[r - 3][c - 3]) {
+        if (board[r][c] === board[r - 1][c + 1]
+          && board[r - 1][c + 1] === board[r - 2][c + 2]
+          && board[r - 2][r + 2] === board[r - 3][c + 3]) {
           setWinner(r, c);
           return;
         }
