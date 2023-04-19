@@ -18,7 +18,7 @@ function setGame() {
   for (let r = 0; r < rows; r += 1) {
     // create a new row
     const row = [];
-    for (let c = 1; c < cols; c += 1) {
+    for (let c = 0; c < cols; c += 1) {
       // for JS board, add a new tile
       row.push(' ');
       // for HTML board, add a new tile
