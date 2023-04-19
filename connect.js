@@ -4,12 +4,41 @@ const playerRed = 'R';
 const playerYellow = 'Y';
 let currPlayer = playerRed; // active player: 1 or 2
 
-const gameOver = false;
+let gameOver = false;
 let board; // array of rows, each row is array of cells  (board[y][x])
 let currColumns;
 
 const rows = 6;
 const cols = 7;
+
+// Set the winner
+function setWinner(r, c) {
+  const winner = document.getElementById('winner');
+  if (board[r][c] === playerRed) {
+    winner.ininerText = 'Red Wins!';
+  } else {
+    winner.innerText = 'Yellow Wins!';
+  }
+  gameOver = true;
+}
+
+// Check for winner
+// This will be called every time a piece is placed
+function checkWinner() {
+  // Horizontally
+  for (let r = 0; r < rows; r += 1) {
+    for (let c = 0; c < cols - 3; c += 1) {
+      if (board[r][c] !== ' ') {
+        if (board[r][c + 1] === currPlayer
+           && board[r][c + 2] === currPlayer
+            && board[r][c + 3] === currPlayer) {
+          setWinner(r, c);
+          return;
+        }
+      }
+    }
+  }
+}
 
 // The click Handler Function
 function handleClick() {
@@ -31,7 +60,9 @@ function handleClick() {
   // Update board in JS
   board[r][c] = currPlayer;
   // Same for HTML
-  const tile = this;
+  // After updating r, the tile changes from 'this' to the tile below
+  // const tile = this;
+  const tile = document.getElementById(`${r.toString()}-${c.toString()}`); // '0-0' -> ['0'-'0']
   if (currPlayer === playerRed) {
     tile.classList.add('red-piece');
     currPlayer = playerYellow;
@@ -39,6 +70,12 @@ function handleClick() {
     tile.classList.add('yellow-piece');
     currPlayer = playerRed;
   }
+  // After placing that piece, We should update r
+  r -= 1; // Subtract by 1 to move up a row, Update row height
+  currColumns[c] = r; // Update the array to reflect the new r
+
+  // Check for win
+  checkWinner();
 }
 
 // Set up the tiles within the board
