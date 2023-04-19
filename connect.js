@@ -1,114 +1,37 @@
-/** Connect Four
- *
- * Player 1 and 2 alternate turns. On each turn, a piece is dropped down a
- * column until a player gets four-in-a-row (horiz, vert, or diag) or until
- * board fills (tie)
- */
+// Connect Four
 
-const WIDTH = 7;
-const HEIGHT = 6;
+const playerRed = 'R';
+const playerYellow = 'Y';
+const currPlayer = playerRed; // active player: 1 or 2
 
-let currPlayer = 1; // active player: 1 or 2
-const board = []; // array of rows, each row is array of cells  (board[y][x])
+const gameOver = false;
+let board; // array of rows, each row is array of cells  (board[y][x])
 
-/** makeBoard: create in-JS board structure:
- *    board = array of rows, each row is array of cells  (board[y][x])
- */
+const rows = 7;
+const cols = 6;
 
-// TODO: set "board" to empty HEIGHT x WIDTH matrix array
-function makeBoard() {
-  for (let y = 0; y < HEIGHT; y += 1) {
-    board.push(Array.from({ length: WIDTH }));
-  }
-}
-
-// makeHtmlBoard: make HTML table and row of column tops.
-// TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
-
-/** findSpotForCol: given column x, return top empty y (null if filled) */
-
-function findSpotForCol(x) {
-  for (let y = HEIGHT - 1; y >= 0; y -= 1) {
-    if (!board[y][x]) {
-      return y;
+// Set up the tiles within the board
+function setGame() {
+  for (let r = 0; r < rows; r += 1) {
+    // create a new row
+    const row = [];
+    for (let c = 1; c < cols; c += 1) {
+      // for JS board, add a new tile
+      row.push(' ');
+      // for HTML board, add a new tile
+      const tile = document.createElement('div');
+      tile.classList.add('tile');
+      tile.id = `${r.toString()}-${c.toString()}`;
+      // tile.addEventListener('click', handleClick);
+      document.getElementById('board').appendChild(tile);
     }
   }
-  return null;
 }
 
-/** placeInTable: update DOM to place piece into HTML table of board */
-
-function placeInTable(y, x) {
-  const piece = document.createElement('div');
-  piece.classList.add('piece');
-  piece.classList.add(`p${currPlayer}`);
-  piece.style.top = -50 * (y + 2);
-
-  const spot = document.getElementById(`${y}-${x}`);
-  spot.append(piece);
-}
-
-// endGame: announce game end (win or tie)
-function endGame(msg) {
-  alert(msg, 'Game Over!');
-}
-
-function handleClick(e) {
-  // get x from ID of clicked cell
-  const x = +e.target.id;
-  // get next spot in column (if non, ignore click)
-  const y = findSpotForCol(x);
-  if (y === null) return;
-
-  // place piece in board and add to HTML table
-  board[y][x] = currPlayer;
-  placeInTable(y, x);
-
-  // check for win
-  if (checkForWin()) {
-    return endGame(`Player ${currPlayer} won!`);
-  }
-
-  // check for Tie
-  if (board.every((row) => row.every((cell) => cell))) {
-    return endGame('Tie!');
-  }
-
-  // swtich players
-  // if (currPlayer === 1) {
-  //   currPlayer = 2;
-  // }
-  // Tenary Operator
-  currPlayer = currPlayer === 1 ? 2 : 1;
-}
-
+// makeBoard: create in-JS board structure:
 function makeHtmlBoard() {
-  const board = document.getElementById('board');
-
-  // Make column tops (clickable area for adding a piece to that column)
-  const top = document.createElement('tr');
-  top.setAttribute('id', 'column-top');
-  top.addEventListener('click', handleClick);
-
-  // Set 'board' to empty WIDTH
-  for (let x = 0; x < WIDTH; x += 1) {
-    const headCell = document.createElement('td');
-    headCell.setAttribute('id', x);
-    top.append(headCell);
-  }
-  board.append(top);
-
-  // Make the main part of the Board
-  for (let y = 0; y < HEIGHT; y += 1) {
-    const row = document.createElement('tr');
-
-    for (let x = 0; x < WIDTH; x += 1) {
-      const cell = document.createElement('td');
-      cell.setAttribute('id', `${y}-${x}`);
-      row.append(cell);
-    }
-    board.append(row);
-  }
+  // const board = document.getElementById('board');
+  setGame();
 }
 
 // function handleClick(evt) {
@@ -166,5 +89,5 @@ function checkForWin() {
   }
 }
 
-makeBoard();
+// makeBoard();
 makeHtmlBoard();
