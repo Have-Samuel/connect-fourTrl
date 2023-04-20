@@ -6,10 +6,10 @@
 
 ### Display
 #### Vertically
-1. ![](./images/Connect-41.png)
+![](./images/Connect-41.png)
 #### Horizontally
-2. ![](./images/Connect-42.png)
+![](./images/Connect-42.png)
 #### Diagonally
-3. ![](./images/Connect-43.png)
+![](./images/Connect-43.png)
 #### Anti-Diagonally
-4. ![](./images/Connect-44.png)
+![](./images/Connect-44.png)
