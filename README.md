@@ -7,9 +7,12 @@
 ### Display
 #### Vertically
 ![](./images/Connect-41.png)
+
 #### Horizontally
 ![](./images/Connect-42.png)
+
 #### Diagonally
 ![](./images/Connect-43.png)
+
 #### Anti-Diagonally
 ![](./images/Connect-44.png)
