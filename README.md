@@ -10,7 +10,7 @@
 - Git and Git-Flow
 - Linters
 - JavaScript
-- Best
+- Uesd Best Practices
 
 ## Live Demo
 
