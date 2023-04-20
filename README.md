@@ -5,7 +5,11 @@
 - The game is won when a player makes four in a row (horizontally, vertically, or diagonally and anti-diagonally). The game is a tie if the entire board fills up without a winner.
 
 ### Display
-1. ![](./images/Connect-41.png);
-2. ![](./images/Connect-42.png);
-3. ![](./images/Connect-43.png);
+#### Vertically
+1. ![](./images/Connect-41.png)
+#### Horizontally
+2. ![](./images/Connect-42.png)
+#### Diagonally
+3. ![](./images/Connect-43.png)
+#### Anti-Diagonally
 4. ![](./images/Connect-44.png)
