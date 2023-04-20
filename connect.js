@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 // Connect Four
 
 const playerRed = 'R';
@@ -146,6 +147,5 @@ function makeHtmlBoard() {
   // const board = document.getElementById('board');
   setGame();
 }
-
 
 makeHtmlBoard();
